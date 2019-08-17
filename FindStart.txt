@@ -1,0 +1,59 @@
+//start is g in this case
+
+const startArray = [
+    { start: "a", des: "f" },
+    { start: "d", des: "c" },
+    { start: "f", des: "b" },
+    { start: "c", des: "z" },
+    { start: "b", des: "d" },
+    { start: "g", des: "a" },
+];
+
+
+function FindStart() {
+
+    // object to store the unique places in a list.
+    var Places = {};
+    /**
+     * the logic used here is for each place visited in the trip we assign a type.
+     *  Type => S (if the place only occurs in the start property)
+     *  Type => SD or DS (if it appears in both start and des properties in the list)
+     *  Type => D (if it only occurs in Destination)
+     */
+     
+    for (var i = 0; i < startArray.length; i++) {
+        // If present in place list attach to Type "S" else set type as "S"
+        if (Places[startArray[i].start]) {
+            Places[startArray[i].start].Type+="S";
+        }
+        else {          
+            Places[startArray[i].start]={Type:"S"};
+        }
+        // If present in place list attach to Type "D" else set type as "D"
+        if(Places[startArray[i].des]){
+            Places[startArray[i].des]+="D";
+        }else{
+            Places[startArray[i].des]={Type:"D"};
+        }
+        
+    }
+var start="";
+    var Keys=Object.keys(Places);
+    /**
+     * Find Place with Type S
+     */
+    for(var j=0;j<Keys.length;j++){
+        
+        if(Places[Keys[i]].Type=="S"){
+        start=Keys[i];
+        break;
+        }
+    }
+   
+
+  
+   console.log("Start",start);
+  
+}
+
+module.exports=FindStart;
